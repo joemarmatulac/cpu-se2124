@@ -8,7 +8,7 @@ public class Se2124Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Se2124Application.class, args);
-		System.out.println("Hello SE2124");
+		System.out.println("LAB 01");
 	}
 
 }

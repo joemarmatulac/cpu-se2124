@@ -16,6 +16,7 @@
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
+		<jib-maven-plugin.version>2.7.0</jib-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,7 +58,34 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>8</source>
+					<target>8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>${jib-maven-plugin.version}</version>
+				<configuration>
+					<to>
+						<image>se2124</image>
+						<credHelper>ecr-login</credHelper>
+						<tags>
+							<tag>latest</tag>
+						</tags>
+					</to>
+					<container>
+						<ports>
+							<port>8080</port>
+						</ports>
+						<creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+					</container>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>
